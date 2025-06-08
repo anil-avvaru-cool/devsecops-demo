@@ -60,6 +60,17 @@ jobs:
 
   
 ````
+login to ghcr.io
+
+````bash
+export CR_PAT=YOUR_TOKEN
+echo $CR_PAT | docker login ghcr.io -u USERNAME --password-stdin
+````
+
+## Docker run to test image
+````bash
+docker run -d -p 80:80 ghcr.io/anil-avvaru-cool/devsecops-demo:sha-8c8bb6341a9561eb51935a6f6edf328fa3202181
+````
 
 
 
