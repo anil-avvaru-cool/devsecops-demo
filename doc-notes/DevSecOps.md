@@ -5,6 +5,7 @@
 ## Pull all sensitive info from vault
 
 ## Scan vulnerabilities packages
+Run Trivy vulnerability scanner
 
 ## Vite
 Build and run locally
@@ -68,9 +69,29 @@ echo $CR_PAT | docker login ghcr.io -u USERNAME --password-stdin
 ````
 
 ## Docker run to test image
+Note: update container registry url to latest and run
 ````bash
-docker run -d -p 80:80 ghcr.io/anil-avvaru-cool/devsecops-demo:sha-8c8bb6341a9561eb51935a6f6edf328fa3202181
+docker run -d -p 8234:80 ghcr.io/anil-avvaru-cool/devsecops-demo:sha-ae7e8131b4e5248c3f376c7bc8289341bf622e29
 ````
+## Kind tool
+Kind is tool for running local kubernetes cluster
+Install kind and create kubernetes cluster
 
+Example:
+Kind create cluster --name=devsecops-demo-cluster
 
+## Argo CD 
+Argo CD is declarative Continuous deployment tool for kubernetes cluster.
+
+## Get argo secret to connect to argo
+ kubectl get secrets -n argocd
+ kubectl edit secret argocd-initial-admin-secret -n argocd
+
+ ## Create image pull secret
+
+ kubectl create secret docker-registry github-container-registry \
+  --docker-server=ghcr.io \
+  --docker-username=YOUR_GITHUB_USERNAME \
+  --docker-password=YOUR_GITHUB_TOKEN \
+  --docker-email=YOUR_EMAIL
 
